@@ -1,15 +1,15 @@
 var controller = {
   getAll: (req, res, next) => {
-    res.end("Will send you all the books");
+    res.end("Will send you all the airplanes");
   },
 
   getOne: (req, res, next) => {
-    res.end("Will get the book " + req.params.id + " to you");
+    res.end("Will get the airplane " + req.params.id + " to you");
   },
 
   addOne: (req, res, next) => {
     res.end(
-      "Will add the book " +
+      "Will add the airplane " +
         req.body.name +
         " with details " +
         req.body.description
@@ -18,12 +18,12 @@ var controller = {
 
   updateOne: (req, res, next) => {
     res.end(
-      "Will update the book " + req.params.id + " with details: " + req.body
+      "Will update the airplane " + req.params.id + " with details: " + req.body
     );
   },
 
   deleteOne: (req, res, next) => {
-    res.end("Will delete the book " + req.params.id);
+    res.end("Will delete the airplane " + req.params.id);
   },
 };
 

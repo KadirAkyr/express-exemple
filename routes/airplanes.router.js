@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const controller = require("../controllers/airplanes.controller");
 
 router
   .route("/")
@@ -8,24 +9,18 @@ router
     res.setHeader("Content-Type", "text/plain");
     next();
   })
-  .get((req, res, next) => {
-    res.end("Will send you all the airplanes");
+  .get(controller.getAll)
+  .post(controller.addOne);
+
+router
+  .route("/:id")
+  .all((req, res, next) => {
+    res.statusCode = 200;
+    res.setHeader("Content-Type", "text/plain");
+    next();
   })
-  .post((req, res, next) => {
-    res.end(
-      "Will add the book " +
-        req.body.name +
-        " with details " +
-        req.body.description
-    );
-  })
-  .put((req, res, next) => {
-    res.statusCode = 403;
-    res.end("PUT operation not supported on /airplanes");
-  })
-  .delete((req, res, next) => {
-    res.statusCode = 403;
-    res.end("DELETE operation not supported on /airplanes");
-  });
+  .get(controller.getOne)
+  .put(controller.updateOne)
+  .delete(controller.deleteOne);
 
 module.exports = router;

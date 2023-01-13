@@ -10,8 +10,17 @@ router
     next();
   })
   .get(controller.getAll)
-  .post(controller.addOne)
-  .put(controller.updateAll)
-  .delete(controller.deleteAll);
+  .post(controller.addOne);
+
+router
+  .route("/:id")
+  .all((req, res, next) => {
+    res.statusCode = 200;
+    res.setHeader("Content-Type", "text/plain");
+    next();
+  })
+  .get(controller.getOne)
+  .put(controller.updateOne)
+  .delete(controller.deleteOne);
 
 module.exports = router;
