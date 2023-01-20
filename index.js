@@ -1,3 +1,4 @@
+require("./models/db");
 const http = require("http");
 const express = require("express");
 const morgan = require("morgan");

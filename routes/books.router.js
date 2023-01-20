@@ -6,7 +6,7 @@ router
   .route("/")
   .all((req, res, next) => {
     res.statusCode = 200;
-    res.setHeader("Content-Type", "text/plain");
+    res.setHeader("Content-Type", "application/json");
     next();
   })
   .get(controller.getAll)
@@ -16,7 +16,7 @@ router
   .route("/:id")
   .all((req, res, next) => {
     res.statusCode = 200;
-    res.setHeader("Content-Type", "text/plain");
+    res.setHeader("Content-Type", "application/json");
     next();
   })
   .get(controller.getOne)

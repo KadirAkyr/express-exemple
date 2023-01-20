@@ -1,29 +1,36 @@
+const Book = require("../models/books.model");
+
 var controller = {
-  getAll: (req, res, next) => {
-    res.end("Will send you all the books");
+  getAll: async (req, res, next) => {
+    let books = await Book.find({});
+    res.json(books);
   },
 
-  getOne: (req, res, next) => {
-    res.end("Will get the book " + req.params.id + " to you");
+  addOne: async (req, res, next) => {
+    let book = await Book.create(req.body);
+    res.json(book);
   },
 
-  addOne: (req, res, next) => {
-    res.end(
-      "Will add the book " +
-        req.body.name +
-        " with details " +
-        req.body.description
-    );
+  getOne: async (req, res, next) => {
+    let book = await Book.findById(req.params.id);
+    res.json(book);
   },
 
-  updateOne: (req, res, next) => {
-    res.end(
-      "Will update the book " + req.params.id + " with details: " + req.body
-    );
+  deleteAll: async (req, res, next) => {
+    let resp = await Book.remove({});
+    res.json(resp);
   },
 
-  deleteOne: (req, res, next) => {
-    res.end("Will delete the book " + req.params.id);
+  updateOne: async (req, res, next) => {
+    let book = await Book.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    res.json(book);
+  },
+
+  deleteOne: async (req, res, next) => {
+    let resp = await Book.findByIdAndDelete(req.params.id);
+    res.json(resp);
   },
 };
 
